@@ -1,43 +1,42 @@
 package com.example.controller;
 
+import com.example.service.JoinService;
 import com.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.example.service.JoinService;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Map;
 
 @Controller
 public class UsersController {
+    @Autowired
+    private LoginService loginService;
 
-	@Autowired
-	private LoginService loginService;
+    @Autowired
+    private JoinService joinService;
 
-	@Autowired
-	private JoinService joinService;
+    @PostMapping(value = "/joinRequest")
+    public String joinRequest(@RequestParam Map<String,String> paramMap) {
 
-	@PostMapping("/joinRequest")
-	public String joinRequest(@RequestParam Map<String ,String > paramMap) {
-		String userId = paramMap.get("user_id");
-		String userPw = paramMap.get("user_pw");
-		String userName = paramMap.get("user_name");
+        String userId = paramMap.get("user_id");
+        String userPw = paramMap.get("user_pw");
+        String userName = paramMap.get("user_name");
 
-		String page = joinService.joinUser(userId , userPw , userName);
+        String page = joinService.joinUser(userId , userPw , userName);
 
-		return page;
-	}
-	
-	@PostMapping("/loginRequest")
-	public String loinRequest(@RequestParam Map<String,String> paramMap) {
-		String userId = paramMap.get("user_id");
-		String userPw = paramMap.get("user_pw");
+        return page;
+    }
 
-		String page = loginService.login(userId, userPw);
+    @PostMapping("/loginRequest")
+    public String loinRequest(@RequestParam Map<String,String> paramMap) {
+        String userId = paramMap.get("user_id");
+        String userPw = paramMap.get("user_pw");
 
-		return page;
-	}
+        String page = loginService.login(userId, userPw);
 
-
+        return page;
+    }
 
 }

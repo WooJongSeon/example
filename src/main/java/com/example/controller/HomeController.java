@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class MainController {
+public class HomeController {
 
 	@Autowired
 	private HttpSession session;
@@ -32,6 +32,11 @@ public class MainController {
 	public String logout(){
 		session.invalidate();
 		return "index";
+	}
+
+	@GetMapping("/freeboardWritePage")
+	public String freeboardWritePage(){
+		return "freeboardWrite";
 	}
 
 
