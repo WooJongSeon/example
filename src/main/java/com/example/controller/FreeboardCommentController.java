@@ -1,18 +1,30 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
+import com.example.model.Freeboard;
+import com.example.model.FreeboardComment;
+import com.example.service.freeboardComment.FreeboardCommentListService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
-@Controller
+@RestController
 public class FreeboardCommentController {
 
-    @GetMapping("/freeboardCommentList")
-    @ResponseBody
-    public Map<String,String> freeboardCommentList(){
+    @Autowired
+    private FreeboardCommentListService freeboardCommentListService;
 
-        return null;
+    @Autowired
+    private HttpSession session;
+
+    @GetMapping("/freeboardCommentList")
+    public ResponseEntity freeboardCommentList(){
+        Freeboard freeboard = (Freeboard) session.getAttribute("freeboard");
+        List<FreeboardComment> commentList = freeboardCommentListService.getList(freeboard.getFreeId());
+
+        return ResponseEntity.ok().body(commentList);
     }
 }

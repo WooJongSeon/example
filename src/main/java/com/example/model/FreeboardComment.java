@@ -30,7 +30,7 @@ public class FreeboardComment {
     private int commentLevel;
 
     @ManyToOne(targetEntity = Freeboard.class)
-    @JoinColumn(foreignKey = @ForeignKey(name = "free_id"))
+    @JoinColumn(foreignKey = @ForeignKey(name = ""))
     private Long freeId;
 
 }
