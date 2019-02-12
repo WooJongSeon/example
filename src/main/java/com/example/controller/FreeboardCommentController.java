@@ -23,7 +23,7 @@ public class FreeboardCommentController {
     @GetMapping("/freeboardCommentList")
     public ResponseEntity freeboardCommentList(){
         Freeboard freeboard = (Freeboard) session.getAttribute("freeboard");
-        List<FreeboardComment> commentList = freeboardCommentListService.getList(freeboard.getFreeId());
+        List<FreeboardComment> commentList = freeboardCommentListService.getList(freeboard.getFree_id());
 
         return ResponseEntity.ok().body(commentList);
     }

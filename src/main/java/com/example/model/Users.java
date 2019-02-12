@@ -1,30 +1,25 @@
 package com.example.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter
-@Entity
+@Entity @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
 public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	//@Column(name = "id")
 	private Long id;
 
-	@Column(name = "user_id")
-	private String userId;
+	//@Column(name = "user_id")
+	private String user_id;
 
-	@Column(name = "password")
+	//@Column(name = "password")
 	private String password;
 
-	@Column(name = "username")
+	//@Column(name = "username")
 	private String username;
 }

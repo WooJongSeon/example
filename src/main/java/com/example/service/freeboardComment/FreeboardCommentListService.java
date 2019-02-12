@@ -24,17 +24,17 @@ public class FreeboardCommentListService {
         LinkedList<FreeboardComment> CommentLinkedList = new LinkedList<FreeboardComment>();
 
         for (int i = 0; i < CommentLinkedList.size(); i++) {
-            if (freeboardCommentList.get(i).getCommentLevel()==0) {//레벨 0 댓글들 먼저 연결리스트에 보관한다.
+            if (freeboardCommentList.get(i).getComment_level()==0) {//레벨 0 댓글들 먼저 연결리스트에 보관한다.
                 CommentLinkedList.add(freeboardCommentList.get(i));//1개씩 추가한다.
             }
         }
 
         for (int i = 0; i < freeboardCommentList.size(); i++) {//댓글 전체를 돌면서
-            if (freeboardCommentList.get(i).getCommentLevel()!=0) {//먼저 레벨이 0이 아닌것들을 거름
+            if (freeboardCommentList.get(i).getComment_level()!=0) {//먼저 레벨이 0이 아닌것들을 거름
                 //0이 아닌 것들을 걸렀다. -> 댓글에 달린 댓글들을 의미한다.
-                long origin_id = freeboardCommentList.get(i).getCommentOriginId();
+                long origin_id = freeboardCommentList.get(i).getComment_origin_id();
                 for (int j = 0; j < CommentLinkedList.size(); j++) {
-                    if (CommentLinkedList.get(j).getCommentOriginId()== origin_id) {
+                    if (CommentLinkedList.get(j).getComment_origin_id()== origin_id) {
                         CommentLinkedList.add(j+1, freeboardCommentList.get(i));
                     }
                 }

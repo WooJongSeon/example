@@ -21,7 +21,7 @@ public class JoinService {
 		}
 
 		Users users = new Users();
-		users.setUserId(userId);
+		users.setUser_id(userId);
 		String hashedPassword = userPasswordHashClass.getSHA256(userPw);
 		users.setPassword(hashedPassword);
 		users.setUsername(userName);

@@ -4,23 +4,22 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter
+@Data
 @Entity @NoArgsConstructor @AllArgsConstructor
-@Table(name = "freeboard")
 public class Freeboard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "free_id")
-    private Long freeId;
+    //@Column(name = "free_id")
+    private Long free_id;
 
-    @Column(name = "content")
+    //@Column(name = "content")
     private String content;
 
-    @Column(name = "title")
+    //@Column(name = "title")
     private String title;
 
-    @Column(name = "writer")
+    //@Column(name = "writer")
     private String writer;
 
 }

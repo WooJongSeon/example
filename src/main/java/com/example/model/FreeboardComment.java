@@ -6,31 +6,30 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity @NoArgsConstructor
-@Getter @Setter @AllArgsConstructor
-@Table(name = "freeboard_comment")
+@AllArgsConstructor @Data
 public class FreeboardComment {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "comment_id")
-    private Long commentId;
+    //@Column(name = "comment_id")
+    private Long comment_id;
 
-    @Column(name = "content")
+    //@Column(name = "content")
     private String content;
 
-    @Column(name = "write_date")
-    private Date writeDate;
+    //@Column(name = "write_date")
+    private Date write_date;
 
-    @Column(name = "writer")
+    //@Column(name = "writer")
     private String writer;
 
-    @Column(name = "comment_origin_id")
-    private Long commentOriginId;
+    //@Column(name = "comment_origin_id")
+    private Long comment_origin_id;
 
-    @Column(name = "comment_level")
-    private int commentLevel;
+    //@Column(name = "comment_level")
+    private int comment_level;
 
     @ManyToOne(targetEntity = Freeboard.class)
-    @JoinColumn(foreignKey = @ForeignKey(name = ""))
-    private Long freeId;
+    //@JoinColumn(foreignKey = @ForeignKey(name = ""))
+    private Long free_id;
 
 }
