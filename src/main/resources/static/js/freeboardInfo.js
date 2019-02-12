@@ -4,7 +4,6 @@ $(document).ready(function () {
         type: "get",
         dataType: "json",
         success: function (data) {
-            alert("hello ");
             if (data != null) {
                 alert("데이터 전송 완료");
             }
