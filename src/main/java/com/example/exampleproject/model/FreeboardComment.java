@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FreeboardComment {
-
+//freeboard comment
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "comment_id")
