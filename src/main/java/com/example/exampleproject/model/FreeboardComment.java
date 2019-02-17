@@ -1,18 +1,20 @@
 package com.example.exampleproject.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class FreeboardComment {
-//freeboard comment
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "comment_id")
@@ -22,7 +24,7 @@ public class FreeboardComment {
     private String content;
 
     @Column(name = "write_date")
-    private Date write_date;
+    private LocalDateTime write_date;
 
     @Column(name = "writer")
     private String writer;
@@ -33,8 +35,8 @@ public class FreeboardComment {
     @Column(name = "comment_level")
     private int comment_level;
 
-    @ManyToOne(targetEntity = Freeboard.class)
-    @JoinColumn(foreignKey = @ForeignKey(name = ""))
-    private Long free_id;
+    //@ManyToOne(targetEntity = Freeboard.class)
+    //@JoinColumn(table =  )
+    private Long freeId;
 
 }

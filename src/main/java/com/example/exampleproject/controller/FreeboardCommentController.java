@@ -2,29 +2,52 @@ package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.Freeboard;
 import com.example.exampleproject.model.FreeboardComment;
+import com.example.exampleproject.repository.FreeboardCommentRepository;
 import com.example.exampleproject.service.freeboardComment.FreeboardCommentListService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.hateoas.MediaTypes;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
+@Controller
 public class FreeboardCommentController {
 
-//    @Autowired
-//    private FreeboardCommentListService freeboardCommentListService;
-//
-//    @Autowired
-//    private HttpSession session;
+    @Autowired
+    private FreeboardCommentListService freeboardCommentListService;
+    @Autowired
+    private FreeboardCommentRepository freeboardCommentRepository;
+    @Autowired
+    private HttpSession session;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-    @GetMapping("/freeboardCommentList")
-    public ResponseEntity freeboardCommentList(){
-//        Freeboard freeboard = (Freeboard) session.getAttribute("freeboard");
-//        List<FreeboardComment> commentList = freeboardCommentListService.getList(freeboard.getFree_id());
-        return null;
-        //return ResponseEntity.ok().body(commentList);
+
+    @GetMapping(value = "/freeboardCommentList", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
+    public @ResponseBody String freeboardCommentList() {
+        Freeboard freeboard = (Freeboard) session.getAttribute("freeboard");
+        List<FreeboardComment> commentList = freeboardCommentListService.getList(freeboard.getFreeId());
+        String value = null;
+        try{
+            value = objectMapper.writeValueAsString(commentList);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return value;
+    }
+    @PostMapping("/freeboardCommentWrite")
+    public @ResponseBody String freeboardCommentWrite(@RequestBody FreeboardComment freeboardComment){
+        freeboardComment.setWrite_date(LocalDateTime.now());
+        freeboardCommentRepository.save(freeboardComment);
+        return "freeboardComment inserted";
     }
 }

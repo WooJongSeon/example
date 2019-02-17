@@ -12,34 +12,32 @@ import java.util.Map;
 
 @Controller
 public class UsersController {
-//    @Autowired
-//    private LoginService loginService;
-//
-//    @Autowired
-//    private JoinService joinService;
+    @Autowired
+    private LoginService loginService;
+
+    @Autowired
+    private JoinService joinService;
 
     @PostMapping(value = "/joinRequest")
     public String joinRequest(@RequestParam Map<String,String> paramMap) {
 
-//        String userId = paramMap.get("user_id");
-//        String userPw = paramMap.get("user_pw");
-//        String userName = paramMap.get("user_name");
-//
-//        String page = joinService.joinUser(userId , userPw , userName);
-//
-//        return page;
-        return null;
+        String userId = paramMap.get("user_id");
+        String userPw = paramMap.get("user_pw");
+        String userName = paramMap.get("user_name");
+
+        String page = joinService.joinUser(userId , userPw , userName);
+
+        return page;
     }
 
     @PostMapping("/loginRequest")
     public String loinRequest(@RequestParam Map<String,String> paramMap) {
-//        String userId = paramMap.get("user_id");
-//        String userPw = paramMap.get("user_pw");
-//
-//        String page = loginService.login(userId, userPw);
+        String userId = paramMap.get("user_id");
+        String userPw = paramMap.get("user_pw");
 
-//        return page;
-        return null;
+        String page = loginService.login(userId, userPw);
+
+        return page;
 
     }
 

@@ -14,12 +14,12 @@ import java.util.Map;
 @Controller
 public class FreeboardController {
 
-//    @Autowired
-//    private FreeboardListService freeboardListService;
-//    @Autowired
-//    private FreeboardWriteService freeboardWriteService;
-//    @Autowired
-//    private FreeboardInfoService freeboardInfoService;
+    @Autowired
+    private FreeboardListService freeboardListService;
+    @Autowired
+    private FreeboardWriteService freeboardWriteService;
+    @Autowired
+    private FreeboardInfoService freeboardInfoService;
 
     private int returnIntValue(String stringToInt){
         return Integer.parseInt(stringToInt);
@@ -27,26 +27,24 @@ public class FreeboardController {
 
     @GetMapping("/freeboard")
     public String freeboard(@RequestParam(value ="pageNum",defaultValue = "1")String pageNum) {
-//        String page = freeboardListService.freeboardList(returnIntValue(pageNum));
-//        return page;
-        return null;
+        String page = freeboardListService.freeboardList(returnIntValue(pageNum));
+        return page;
     }
 
     @PostMapping("/freeboardWriteRequest")
     public String freeboardWriteRequest(@RequestParam Map<String ,String > paramMap){
-//        String title = paramMap.get("content");
-//        String content = paramMap.get("title");
-//        String writer = paramMap.get("writer");
-//
-//        freeboardWriteService.write(title, content, writer);
+        String title = paramMap.get("content");
+        String content = paramMap.get("title");
+        String writer = paramMap.get("writer");
+
+        freeboardWriteService.write(title, content, writer);
 
         return "redirect:/freeboard";
     }
 
     @GetMapping("/freeBoardInfo")
     public String getPost(@RequestParam(value = "freeId") String freeId){
-//        String page = freeboardInfoService.getFreeboardPost(freeId);
-//        return page;
-        return null;
+        String page = freeboardInfoService.getFreeboardPost(freeId);
+        return page;
     }
 }
